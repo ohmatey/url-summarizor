@@ -9,14 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dqbd/tiktoken": "^1.0.7",
+    "@huggingface/inference": "^2.3.0",
+    "@notionhq/client": "^2.2.5",
     "@types/node": "20.1.1",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
+    "cheerio": "1.0.0-rc.12",
+    "cohere-ai": "^6.2.0",
+    "d3-dsv": "^3.0.1",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "langchain": "^0.0.73",
     "next": "13.4.1",
+    "pdf-parse": "^1.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-query": "^3.39.3",
+    "replicate": "^0.12.0",
     "typescript": "5.0.4"
   }
 }

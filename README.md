@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Url summarizor
 
-## Getting Started
+*Use GPT to quickly digest documents*
 
-First, run the development server:
+Experiment summarize document by url project to practice interacting with Ai agents.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+![](./intro.gif)
+
+# Steps to run the project
+
+## Pull project
+
+```
+git clone ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+// install pnpm if you haven't yet
+npm i pnpm
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Run the project
 
-## Learn More
+```
+// development
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+// production build
+npm run build && npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Get an OpenAi API key
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+https://platform.openai.com/account/api-keys
 
-## Deploy on Vercel
+## Start digesting content
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To summarize any content from a url simply enter any of the following prompts:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`Summarize the content of this article https://www.wired.com/story/rethinking-relationship-artificial-intelligence/`
+
+`Explain at a PDF level what the article is about https://www.economist.com/finance-and-economics/2023/05/07/your-job-is-probably-safe-from-artificial-intelligence`
