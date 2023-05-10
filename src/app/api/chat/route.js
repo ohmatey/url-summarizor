@@ -7,6 +7,8 @@ export async function POST(request) {
   const {
     prompt,
     openAiApiKey,
+    temperature = 0,
+    maxTokens = 2000,
   } = await request.json()
 
   if (!prompt) {
@@ -24,8 +26,8 @@ export async function POST(request) {
   const gptChatModel = new ChatOpenAI({
     openAIApiKey: openAiApiKey,
     model: 'gpt4',
-    temperature: 1,
-    maxTokens: 2000,
+    temperature,
+    maxTokens,
     maxConcurrency: 5,
   })
 

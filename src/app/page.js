@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 import { ChatOpenAI } from 'langchain/chat_models/openai'
 import styles from './page.module.css'
@@ -28,6 +29,18 @@ export default function Home() {
   const [agentActions, setAgentActions] = useState([])
 
   const randomArticleUrl = getRandomArticleUrl()
+
+  const {
+    register,
+    handleSubmit,
+  } = useForm({
+    defaultValues: {
+      openAiApiKey: process.env.OPENAI_API_KEY,
+      temperature: 0.5,
+      maxTokens: 500,
+      prompt: `You are a PHD level researcher. What is the main idea of the article? ${randomArticleUrl}`,
+    },
+  })
 
   const {
     mutateAsync: runPrompt,
@@ -104,26 +117,12 @@ export default function Home() {
       className={styles.main}
     >
       <div>
-        <form
-          onSubmit={async (event) => {
-            event.preventDefault()
-
-            const formData = new FormData(event.currentTarget)
-
-            const prompt = formData.get('prompt')
-            const openAiApiKey = formData.get('openAiApiKey')
-            const temperature = formData.get('temperature')
-            const maxTokens = formData.get('maxTokens')
-            
-            return runPrompt({
-              prompt,
-              openAiApiKey,
-              temperature,
-              maxTokens,
-            })
-          }}
-        >
+        <form onSubmit={handleSubmit(runPrompt)}>
           <div className={styles.stack}>
+            <h1 className={styles.displayText}>
+              SMZR
+            </h1>
+
             <h1>
               Ask questions about any website, article, blog post, or file.
             </h1>
@@ -131,12 +130,12 @@ export default function Home() {
             <p>An example using a combination of <a href='https://openai.com/'>Open Ai APIs</a> with <a href='https://github.com/hwchase17/langchainjs'>Langchain js</a></p>
 
             <label>
-              <span className={styles.labelText}>OpenAi Api key</span>
+              <span className={styles.labelText}>OpenAi Api key 🔑</span>
               <input
-                name='openAiApiKey'
-                required
+                {...register('openAiApiKey', {
+                  required: true,
+                })}
                 disabled={isLoading}
-                defaultValue={process.env.OPENAI_API_KEY}
                 type='password'
                 className={styles.input}
               />
@@ -146,29 +145,29 @@ export default function Home() {
             <label>
               <span className={styles.labelText}>Temperature 🔥</span>
               <input
-                name='temperature'
-                required
+                {...register('temperature', {
+                  required: true,
+                  min: 0,
+                  max: 1,
+                  step: 0.01,
+                })}
                 disabled={isLoading}
-                defaultValue={0}
-                min={0}
-                max={1}
-                step={0.1}
                 type='number'
                 className={styles.input}
               />
-              <p></p>
+              <p><small>Throttles response randomness</small></p>
             </label>
 
             <label>
               <span className={styles.labelText}>Max tokens ✨</span>
               <input
-                name='temperature'
-                required
+                {...register('maxTokens', {
+                  required: true,
+                  min: 100,
+                  max: 3000,
+                  step: 100,
+                })}
                 disabled={isLoading}
-                defaultValue={2000}
-                min={100}
-                max={3000}
-                step={100}
                 type='number'
                 className={styles.input}
               />
@@ -176,11 +175,11 @@ export default function Home() {
             </label>
 
             <label>
-              <div className={styles.labelText}>Prompt</div>
+              <h3 className={styles.labelText}>Prompt</h3>
               <textarea
-                name='prompt'
-                required
-                defaultValue={`You are a PHD level researcher. What is the main idea of the article? ${randomArticleUrl}`}
+                {...register('prompt', {
+                  required: true,
+                })}
                 rows={4}
                 aria-multiline
                 className={styles.input}
@@ -191,9 +190,6 @@ export default function Home() {
               className={styles.button}
               type='submit'
               disabled={isLoading}
-              style={{
-                padding: '8px 16px',
-              }}
             >Summarize</button>
           </div>
         </form>

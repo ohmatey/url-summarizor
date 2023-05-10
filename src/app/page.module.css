@@ -8,3 +8,8 @@
   padding: 0.5rem;
   width: 100%;
 }
+
+.displayText {
+  font-size: large;
+  font-weight: bold;
+}
