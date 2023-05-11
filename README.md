@@ -6,6 +6,22 @@ Experiment summarize document by url project to practice interacting with Ai age
 
 ![](./intro.gif)
 
+# Features
+
+Visit `/` to:
+- Enter an OpenAI api key
+- Enter a prompt optionally with a url to a doc and recieve a Ai generated summary
+- Action steps logged
+
+
+Visit `/app` to summarize docs from a notion database:
+*Visit https://developers.notion.com/docs/create-a-notion-integration for full details*
+
+- Enter notion secret and database id and hit submit
+- Peruse list of notion docs
+- Generate a summary from the notion doc URL property
+- Edit the returned summary but updating the notion doc with summary
+
 # Steps to run the project
 
 ## Pull project
